@@ -1,6 +1,7 @@
-% [ad_y] = fsilosRecoverFromPNCC(ad_x, fs, SS_flag)
-% Programmed by Fernando de la Calle based in the Chanwoo Kim
-% implementation of the PNCC
+%[ad_y] = fsilosRecoverFromPNCC(ad_x, fs, SS_flag)
+%
+%
+% Programmed by Fernando de la Calle based in the 
 % Important: The input should be mono and be sampled at "16 kHz".
 function [ad_y] = fsilosRecoverFromPNCC(ad_x, fs, SS_flag)
     if nargin < 2;   error('s and fs requiered'); return;  end      
