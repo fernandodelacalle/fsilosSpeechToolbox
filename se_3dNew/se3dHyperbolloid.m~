@@ -1,0 +1,8 @@
+function [SE] = se3dHyperboloid(t_fin, t_ini, time_step, frequencySize)
+    
+    [M_temp , DeltaT] = temporalMaskingNew(t_fin,t_ini, time_step);
+    [M_frec, Del] = frecuencyMaskingNew(frequencySize, 0);
+    
+    [x,y] = meshgrid(DeltaT,DeltaF);
+
+end

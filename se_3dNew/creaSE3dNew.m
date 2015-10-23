@@ -1,0 +1,64 @@
+clc; clear all; close all;
+
+%% Constants
+t_fin = 150;
+t_ini = -10;
+t_ini = -20;
+time_step = 10;
+
+frequencySize = 4*2;
+frequencySize = 4*3;
+
+%% Creating the mask and padding
+%[SE] = se3dNew(t_fin, t_ini, time_step, frequencySize);
+
+padding
+SE = (SE - min(min(SE)))  ./ (max(max(SE)) -  min(min(SE))) ;
+addZeros = ((t_fin + t_ini) / time_step) -1;
+SE = [zeros(addZeros, frequencySize*2 + 1);  SE];
+
+%%% Plotting
+figure(1);
+surf(SE);
+xlabel('Delta F')
+ylabel('Delta T')
+
+SE = SE';
+
+figure(2);
+imagesc(SE);
+xlabel('Delta T')
+ylabel('Delta F')
+
+%SE = flipdim(SE,2);
+
+%% another view
+figure(2);
+imagesc(SE);
+colorbar
+%%
+Nhood = ones(size(SE));
+se_1 = strel(Nhood,SE);
+
+%% Repetimos con el hiperboloide
+% DeltaT = linspace(t_ini,t_fin,(t_fin - t_ini)/time_step);
+% N = frequencySize;
+% centralBand = 0;
+% [f, DeltaF] = frecuencyMaskingNew(N, centralBand);
+% [x,y] = meshgrid(DeltaT,DeltaF);
+% %readjust the paraboloid
+% hypp = @(x,y,a,b,c)  - (c .* sqrt(1 + x.^2./a^2 + y.^2./b^2));
+% c = 5;
+% THQ = -10;
+% M = max(zeros(length(DeltaF),length(DeltaT)),4*c + hypp(x,y,50,3,c));
+% M = M ./ (max(max(M)) - min(min(M)));
+%SE = se3dHyperboloid(t_fin, t_ini, time_step, frequencySize);
+SE = se3dAsymHyperboloid(t_fin, t_ini, time_step, frequencySize);
+%Doesn't need any padding
+
+figure(3)
+surf(SE)
+xlabel('Delta T')
+ylabel('Delta F')
+zlabel('Masking')
+
