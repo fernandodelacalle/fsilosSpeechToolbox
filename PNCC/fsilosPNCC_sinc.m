@@ -77,6 +77,9 @@ function [aadDCT] = PNCC__sincFer(s, fs, MF_flag, se)
         i_FI = i_FI + 1;
     end
 
+    
+    
+    
     i_FI_Out = 0;
     i_FI = 0;
     for m = 0 : iFP : iSpeechLen  - iFL 
